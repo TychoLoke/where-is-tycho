@@ -753,10 +753,10 @@ function EventPlannerApp() {
         <div className="mt-12 flex flex-wrap gap-3">
           <Button onClick={downloadICS} className="h-10 px-4 gap-2 bg-fuchsia-600 hover:bg-fuchsia-500 text-white border-0"><CalendarIcon className="w-4 h-4"/>Download ICS</Button>
           <Button variant="outline" onClick={downloadCSV} className="h-10 px-4 gap-2 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800"><FileDown className="w-4 h-4"/>Export CSV</Button>
-          <Button variant="outline" onClick={()=>exportStaticSite(events)} className="h-10 px-4 gap-2 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800">Download Site (HTML)</Button>
+          <Button variant="outline" onClick={()=>exportStaticSite(events)} className="h-10 px-4 gap-2 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800">Download Site (HTML)</Button> 
         </div>
 
-        <p className="mt-6 text-xs text-slate-500">Dark-mode only. Travel days auto-added around international events. Designed for public viewing.</p>
+        <p className="mt-6 text-xs text-slate-500">This side is made by GPT=5 and Tycho Loke, all rights reserved to Above The Stack.</p>
       </main>
     </div>
   );
