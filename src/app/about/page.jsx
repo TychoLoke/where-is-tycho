@@ -10,19 +10,38 @@ import Link from "next/link";
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-      {/* Header */}
-      <header className="sticky top-0 z-20 backdrop-blur bg-slate-950/70 border-b border-slate-900">
-        <div className="max-w-4xl mx-auto px-6 py-4 flex items-center gap-3">
-          <Link href="/" className="inline-flex items-center gap-2 text-slate-300 hover:text-slate-100">
-            <ArrowLeft className="w-4 h-4" />
-            <span className="text-sm">Back</span>
-          </Link>
-          <div className="ml-auto flex items-center gap-2 text-slate-300">
-            <Globe2 className="w-5 h-5" />
-            <span className="text-sm">Where is Tycho — About</span>
-          </div>
-        </div>
-      </header>
+{/* Header */}
+<header className="sticky top-0 z-20 backdrop-blur bg-slate-950/70 border-b border-slate-900">
+  <div className="max-w-6xl mx-auto px-6 py-4 flex items-center gap-4">
+    {/* Icon */}
+    <div className="p-2 rounded-xl bg-gradient-to-tr from-fuchsia-600 to-purple-600 text-white">
+      <Globe2 className="w-6 h-6" />
+    </div>
+
+    {/* Title */}
+    <div className="flex-1">
+      <h1 className="text-2xl font-semibold tracking-tight">Where is Tycho — About</h1>
+      <p className="text-sm text-slate-400">Public profile</p>
+    </div>
+
+    {/* Navigation */}
+    <div className="hidden md:flex items-center gap-2">
+      <Link
+        href="/"
+        className="px-4 py-2 rounded-lg border border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800 transition"
+      >
+        Home
+      </Link>
+      <Link
+        href="/about"
+        className="px-4 py-2 rounded-lg border border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800 transition"
+      >
+        About
+      </Link>
+    </div>
+  </div>
+</header>
+
 
       <main className="max-w-4xl mx-auto px-6 py-10">
         {/* Hero / Intro */}
