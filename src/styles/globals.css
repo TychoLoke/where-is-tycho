@@ -8,3 +8,47 @@ body { @apply bg-slate-950 text-slate-100; }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* --- Brand Tokens: AvePoint Elements (edit these 6 to re-skin) --- */
+:root {
+  --brand-bg: #0b1220;        /* page background (deep navy) */
+  --brand-text: #e6eaf2;      /* base text */
+  --brand-accent: #7b5cff;    /* violet primary */
+  --brand-accent-2: #9a6bff;  /* lighter violet */
+  --brand-accent-3: #58a6ff;  /* azure edge */
+  --brand-muted: #0f172a;     /* card bg */
+  --brand-border: #1f2a44;    /* borders */
+}
+
+/* Dark mode baseline */
+html { color-scheme: dark; }
+body { background: var(--brand-bg); color: var(--brand-text); }
+
+/* Scrollbar utility */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* --- Theming utilities (use in JSX) --- */
+@layer utilities {
+  .brand-chip { 
+    background-image:
+      radial-gradient(1100px 600px at 15% -10%, color-mix(in oklab, var(--brand-accent) 28%, transparent), transparent),
+      radial-gradient(1100px 600px at 115% -10%, color-mix(in oklab, var(--brand-accent-3) 22%, transparent), transparent);
+  }
+  .brand-grad-bar { 
+    background-image: linear-gradient(90deg, var(--brand-accent), var(--brand-accent-2), var(--brand-accent-3));
+  }
+  .btn-primary { background: var(--brand-accent); color: white; transition: transform .08s ease, filter .15s ease; }
+  .btn-primary:hover { filter: brightness(1.05); }
+  .btn-primary:active { transform: scale(0.98); }
+  .badge-speaker  { 
+    background: color-mix(in oklab, var(--brand-accent) 22%, transparent);
+    color: color-mix(in oklab, var(--brand-accent) 80%, white 20%);
+    border-color: color-mix(in oklab, var(--brand-accent) 45%, transparent);
+  }
+  .badge-intl  { 
+    background: color-mix(in oklab, var(--brand-accent-3) 22%, transparent);
+    color: color-mix(in oklab, var(--brand-accent-3) 80%, white 20%);
+    border-color: color-mix(in oklab, var(--brand-accent-3) 45%, transparent);
+  }
+}

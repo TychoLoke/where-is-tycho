@@ -468,8 +468,8 @@ function EventCard({ e }) {
           <CardTitle className="flex items-center justify-between gap-3 text-base text-slate-100">
             <span className="truncate">{e.title}</span>
             <div className="flex gap-2">
-              <Badge className={roleBadge(e.role)}>{e.role}</Badge>
-              {e.international && <Badge className="bg-indigo-900/40 text-indigo-300 border border-indigo-800">International</Badge>}
+              <Badge className={e.role === "Speaker" ? "badge-speaker border" : (e.role === "Attendee" ? "bg-slate-800 text-slate-300 border border-slate-700" : "bg-cyan-900/40 text-cyan-300 border border-cyan-800")}>{e.role}</Badge>
+              {e.international && <Badge className="badge-intl border">International</Badge>}
             </div>
           </CardTitle>
         </CardHeader>
@@ -490,7 +490,7 @@ function EventCard({ e }) {
             </div>
           )}
           <div className="mt-4 flex flex-wrap gap-2">
-            <Button size="sm" onClick={onDownloadICS} className="h-9 px-3 gap-2 bg-fuchsia-600 hover:bg-fuchsia-500 active:scale-[0.98] transition text-white border-0"><CalendarIcon className="w-4 h-4"/>Add to calendar</Button>
+            <Button size="sm" onClick={onDownloadICS} className="h-9 px-3 gap-2 btn-primary active:scale-[0.98] transition text-white border-0"><CalendarIcon className="w-4 h-4"/>Add to calendar</Button>
             <Button size="sm" variant="outline" onClick={onShare} className="h-9 px-3 gap-2 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800 active:scale-[0.98] transition"><Share2 className="w-4 h-4"/>Copy link</Button>
           </div>
         </CardContent>
@@ -621,7 +621,7 @@ function EventPlannerApp() {
 
   return (
     <motion.div initial={{opacity:0, y:6}} animate={{opacity:1, y:0}} transition={{duration:0.25}}>
-    <div className="min-h-screen bg-[radial-gradient(1100px_600px_at_15%_-10%,rgba(168,85,247,.12),transparent),radial-gradient(1100px_600px_at_115%_-10%,rgba(99,102,241,.10),transparent)] bg-slate-950 text-slate-100">
+    <div className="min-h-screen brand-chip bg-[color:var(--brand-bg)] text-[color:var(--brand-text)]">
       {/* Header */}
 <header className="sticky top-0 z-20 backdrop-blur bg-slate-950/70 border-b border-slate-900">
   <div className="max-w-6xl mx-auto px-6 py-4 flex items-center gap-4">
@@ -633,28 +633,13 @@ function EventPlannerApp() {
       <p className="text-sm text-slate-400">Public itinerary · Europe/Amsterdam</p>
     </div>
     <div className="hidden md:flex items-center gap-2">
-      <Link href="/" className="px-4 py-2 rounded-lg border border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800 transition">
-        Home
-      </Link>
-      <Link href="/about" className="px-4 py-2 rounded-lg border border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800 transition">
-        About
-      </Link>
-      <Button
-        variant="outline"
-        onClick={downloadCSV}
-        className="gap-2 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800"
-      >
-        <FileDown className="w-4 h-4" /> CSV
-      </Button>
-      <Button
-        onClick={downloadICS}
-        className="gap-2 bg-fuchsia-600 hover:bg-fuchsia-500 text-white border-0"
-      >
-        <CalendarIcon className="w-4 h-4" /> ICS
-      </Button>
-    </div>
-  </div>
-</header>
+            <Link href="/" className="px-4 py-2 rounded-lg border border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800 transition">Home</Link>
+            <Link href="/about" className="px-4 py-2 rounded-lg border border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800 transition">About</Link>
+            <Button variant="outline" onClick={downloadCSV} className="gap-2 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800"><FileDown className="w-4 h-4"/>CSV</Button>
+            <Button onClick={downloadICS} className="gap-2 btn-primary text-white border-0"><CalendarIcon className="w-4 h-4"/>ICS</Button>
+          </div>
+        </div>
+      </header>
 
 
       {/* Next Up strip */}
@@ -663,14 +648,14 @@ function EventPlannerApp() {
           {nextUp ? (
             <motion.div initial={{opacity:0, y:6}} animate={{opacity:1, y:0}} exit={{opacity:0, y:6}} transition={{duration:0.25}}>
               <Card className="bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 overflow-hidden">
-                <div className="h-1 bg-gradient-to-r from-fuchsia-600 via-purple-600 to-indigo-600" />
+                <div className="h-1 brand-grad-bar" />
                 <CardContent className="py-4 flex flex-wrap items-center gap-3">
                   <span className="text-xs uppercase tracking-wide text-slate-400">Next up</span>
                   <span className="text-base font-semibold text-slate-100">{nextUp.title}</span>
                   <span className="text-sm text-slate-300">{nextUp.start === nextUp.end ? nextUp.start : `${nextUp.start} – ${nextUp.end}`}</span>
                   <span className="text-sm text-slate-300 flex items-center gap-1"><MapPin className="w-4 h-4"/>{nextUp.city}{nextUp.country?`, ${nextUp.country}`:""}</span>
                   <div className="ml-auto flex gap-2">
-                    <Button size="sm" onClick={()=>download(`${nextUp.id}.ics`, icsForEvent(nextUp), "text/calendar")} className="h-9 px-3 gap-2 bg-fuchsia-600 hover:bg-fuchsia-500 active:scale-[0.98] transition text-white border-0"><CalendarIcon className="w-4 h-4"/>Add to calendar</Button>
+                    <Button size="sm" onClick={()=>download(`${nextUp.id}.ics`, icsForEvent(nextUp), "text/calendar")} className="h-9 px-3 gap-2 btn-primary active:scale-[0.98] transition text-white border-0"><CalendarIcon className="w-4 h-4"/>Add to calendar</Button>
                     <Button size="sm" variant="outline" onClick={downloadICS} className="h-9 px-3 gap-2 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800 active:scale-[0.98] transition"><Download className="w-4 h-4"/>All events (ICS)</Button>
                   </div>
                 </CardContent>
@@ -694,7 +679,7 @@ function EventPlannerApp() {
               <label className="text-sm font-medium block mb-2 text-slate-200">Role</label>
               <div className="flex gap-2 flex-wrap">
                 {["All","Speaker","Attendee","Travel"].map((r) => (
-                  <Button key={r} size="sm" variant={r===roleFilter?"default":"outline"} onClick={()=>setRoleFilter(r)} className={r===roleFilter?"h-9 px-3 bg-fuchsia-600 hover:bg-fuchsia-500 border-0":"h-9 px-3 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800"}>{r}</Button>
+                  <Button key={r} size="sm" variant={r===roleFilter?"default":"outline"} onClick={()=>setRoleFilter(r)} className={r===roleFilter?"h-9 px-3 btn-primary border-0":"h-9 px-3 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800"}>{r}</Button>
                 ))}
               </div>
             </div>
@@ -771,7 +756,7 @@ function EventPlannerApp() {
 
         {/* Actions */}
         <div className="mt-12 flex flex-wrap gap-3">
-          <Button onClick={downloadICS} className="h-10 px-4 gap-2 bg-fuchsia-600 hover:bg-fuchsia-500 active:scale-[0.98] transition text-white border-0"><CalendarIcon className="w-4 h-4"/>Download ICS</Button>
+          <Button onClick={downloadICS} className="h-10 px-4 gap-2 btn-primary active:scale-[0.98] transition text-white border-0"><CalendarIcon className="w-4 h-4"/>Download ICS</Button>
           <Button variant="outline" onClick={downloadCSV} className="h-10 px-4 gap-2 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800 active:scale-[0.98] transition"><FileDown className="w-4 h-4"/>Export CSV</Button>
           <Button variant="outline" onClick={()=>exportStaticSite(events)} className="h-10 px-4 gap-2 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800 active:scale-[0.98] transition">Download Site (HTML)</Button>
         </div>

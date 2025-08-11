@@ -12,38 +12,23 @@ export default function AboutPage() {
     <div className="min-h-screen bg-slate-950 text-slate-100">
 {/* Header */}
 <header className="sticky top-0 z-20 backdrop-blur bg-slate-950/70 border-b border-slate-900">
-  <div className="max-w-6xl mx-auto px-6 py-4 flex items-center gap-4">
-    {/* Icon */}
-    <div className="p-2 rounded-xl bg-gradient-to-tr from-fuchsia-600 to-purple-600 text-white">
-      <Globe2 className="w-6 h-6" />
-    </div>
-
-    {/* Title */}
-    <div className="flex-1">
-      <h1 className="text-2xl font-semibold tracking-tight">Where is Tycho — About</h1>
-      <p className="text-sm text-slate-400">Public profile</p>
-    </div>
-
-    {/* Navigation */}
-    <div className="hidden md:flex items-center gap-2">
-      <Link
-        href="/"
-        className="px-4 py-2 rounded-lg border border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800 transition"
-      >
-        Home
-      </Link>
-      <Link
-        href="/about"
-        className="px-4 py-2 rounded-lg border border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800 transition"
-      >
-        About
-      </Link>
-    </div>
-  </div>
-</header>
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center gap-4">
+          <div className="p-2 rounded-xl" style={{background: 'linear-gradient(135deg,var(--brand-accent),var(--brand-accent-2))', color: '#fff'}}>
+            <Globe2 className="w-6 h-6" />
+          </div>
+          <div className="flex-1">
+            <h1 className="text-2xl font-semibold tracking-tight">Where is Tycho — About</h1>
+            <p className="text-sm text-slate-400">Public profile</p>
+          </div>
+          <div className="hidden md:flex items-center gap-2">
+            <Link href="/" className="px-4 py-2 rounded-lg border border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800 transition">Home</Link>
+            <Link href="/about" className="px-4 py-2 rounded-lg border border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800 transition">About</Link>
+          </div>
+        </div>
+      </header>
 
 
-      <main className="max-w-4xl mx-auto px-6 py-10">
+      <main className="max-w-6xl mx-auto px-6 py-10">
         {/* Hero / Intro */}
         <motion.section
           initial={{ opacity: 0, y: 8 }}
