@@ -571,11 +571,11 @@ function exportStaticSite(currentEvents) {
 // =========================================================
 function EventPlannerApp() {
   const [baseEvents] = useState(() => RAW_EVENTS);
-  const [showTravel, setShowTravel] = useState(false); // default OFF → list first // default ON for public
+  const [showTravel, setShowTravel] = useState(true); // default ON for public
   const [q, setQ] = useState("");
   const [roleFilter, setRoleFilter] = useState("All");
   const [intlOnly, setIntlOnly] = useState(false);
-  const [viewYear, setViewYear] = useState(true);
+  const [viewYear, setViewYear] = useState(false); // default OFF → list first
   const [compact, setCompact] = useState(false);
 
   const base = useMemo(() => baseEvents.slice().sort(compareByStart), [baseEvents]);
