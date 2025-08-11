@@ -8,16 +8,6 @@ import { Badge } from "@/components/ui/badge";
 import { Globe2, ArrowLeft, ExternalLink } from "lucide-react";
 import Link from "next/link";
 
-export const metadata = {
-  title: "About — Tycho Loke",
-  description: "Who Tycho is, what he does, and where he works.",
-  openGraph: {
-    title: "About — Tycho Loke",
-    description: "Channel Pre‑Sales Solutions Engineer at AvePoint, founder of AboveTheStack.com.",
-    type: "profile",
-  },
-};
-
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
@@ -53,7 +43,7 @@ export default function AboutPage() {
           <div>
             <h1 className="text-2xl font-semibold tracking-tight">Tycho Loke</h1>
             <p className="mt-2 text-slate-300">
-              Channel Pre‑Sales Solutions Engineer at AvePoint. Founder of{" "}
+              Channel Pre-Sales Solutions Engineer at AvePoint. Founder of{" "}
               <a href="https://abovethestack.com" target="_blank" className="underline decoration-slate-600 hover:decoration-fuchsia-500">AboveTheStack.com</a>{" "}
               and{" "}
               <a href="https://tycholoke.com" target="_blank" className="underline decoration-slate-600 hover:decoration-fuchsia-500">TychoLoke.com</a>.
@@ -76,7 +66,7 @@ export default function AboutPage() {
               <CardContent className="text-slate-300 text-sm leading-6">
                 <p>
                   I connect business strategy with Microsoft 365 execution, empowering MSPs to scale through automation, standardization, and smart tenant management.
-                  With deep expertise in Azure, Intune, AI, and multi‑tenant SaaS delivery, I help MSPs transform into Managed Intelligence Providers (MIPs) by modernizing operations and boosting recurring value.
+                  With deep expertise in Azure, Intune, AI, and multi-tenant SaaS delivery, I help MSPs transform into Managed Intelligence Providers (MIPs) by modernizing operations and boosting recurring value.
                 </p>
               </CardContent>
             </Card>
@@ -125,7 +115,7 @@ export default function AboutPage() {
               </CardHeader>
               <CardContent className="text-slate-300 text-sm leading-6">
                 <ul className="list-disc list-inside space-y-1">
-                  <li>Formula 1 — strategy, telemetry, high‑performance decision‑making</li>
+                  <li>Formula 1 — strategy, telemetry, high-performance decision-making</li>
                   <li>Travel & cruising — exploring new cultures and coastlines</li>
                   <li>Gaming — where tech, UX, and entertainment converge</li>
                 </ul>
