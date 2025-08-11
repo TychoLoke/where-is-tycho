@@ -490,8 +490,8 @@ function EventCard({ e }) {
             </div>
           )}
           <div className="mt-4 flex flex-wrap gap-2">
-            <Button size="sm" onClick={onDownloadICS} className="h-9 px-3 gap-2 bg-fuchsia-600 hover:bg-fuchsia-500 text-white border-0"><CalendarIcon className="w-4 h-4"/>Add to calendar</Button>
-            <Button size="sm" variant="outline" onClick={onShare} className="h-9 px-3 gap-2 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800"><Share2 className="w-4 h-4"/>Copy link</Button>
+            <Button size="sm" onClick={onDownloadICS} className="h-9 px-3 gap-2 bg-fuchsia-600 hover:bg-fuchsia-500 active:scale-[0.98] transition text-white border-0"><CalendarIcon className="w-4 h-4"/>Add to calendar</Button>
+            <Button size="sm" variant="outline" onClick={onShare} className="h-9 px-3 gap-2 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800 active:scale-[0.98] transition"><Share2 className="w-4 h-4"/>Copy link</Button>
           </div>
         </CardContent>
       </Card>
@@ -571,11 +571,11 @@ function exportStaticSite(currentEvents) {
 // =========================================================
 function EventPlannerApp() {
   const [baseEvents] = useState(() => RAW_EVENTS);
-  const [showTravel, setShowTravel] = useState(true); // default ON for public
+  const [showTravel, setShowTravel] = useState(true); // default ON // public default: hide travel
   const [q, setQ] = useState("");
   const [roleFilter, setRoleFilter] = useState("All");
   const [intlOnly, setIntlOnly] = useState(false);
-  const [viewYear, setViewYear] = useState(false); // default OFF → list first
+  const [viewYear, setViewYear] = useState(false); // default OFF
   const [compact, setCompact] = useState(false);
 
   const base = useMemo(() => baseEvents.slice().sort(compareByStart), [baseEvents]);
@@ -620,6 +620,7 @@ function EventPlannerApp() {
   };
 
   return (
+    <motion.div initial={{opacity:0, y:6}} animate={{opacity:1, y:0}} transition={{duration:0.25}}>
     <div className="min-h-screen bg-[radial-gradient(1100px_600px_at_15%_-10%,rgba(168,85,247,.12),transparent),radial-gradient(1100px_600px_at_115%_-10%,rgba(99,102,241,.10),transparent)] bg-slate-950 text-slate-100">
       {/* Header */}
       <header className="sticky top-0 z-20 backdrop-blur bg-slate-950/70 border-b border-slate-900">
@@ -651,8 +652,8 @@ function EventPlannerApp() {
                   <span className="text-sm text-slate-300">{nextUp.start === nextUp.end ? nextUp.start : `${nextUp.start} – ${nextUp.end}`}</span>
                   <span className="text-sm text-slate-300 flex items-center gap-1"><MapPin className="w-4 h-4"/>{nextUp.city}{nextUp.country?`, ${nextUp.country}`:""}</span>
                   <div className="ml-auto flex gap-2">
-                    <Button size="sm" onClick={()=>download(`${nextUp.id}.ics`, icsForEvent(nextUp), "text/calendar")} className="h-9 px-3 gap-2 bg-fuchsia-600 hover:bg-fuchsia-500 text-white border-0"><CalendarIcon className="w-4 h-4"/>Add to calendar</Button>
-                    <Button size="sm" variant="outline" onClick={downloadICS} className="h-9 px-3 gap-2 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800"><Download className="w-4 h-4"/>All events (ICS)</Button>
+                    <Button size="sm" onClick={()=>download(`${nextUp.id}.ics`, icsForEvent(nextUp), "text/calendar")} className="h-9 px-3 gap-2 bg-fuchsia-600 hover:bg-fuchsia-500 active:scale-[0.98] transition text-white border-0"><CalendarIcon className="w-4 h-4"/>Add to calendar</Button>
+                    <Button size="sm" variant="outline" onClick={downloadICS} className="h-9 px-3 gap-2 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800 active:scale-[0.98] transition"><Download className="w-4 h-4"/>All events (ICS)</Button>
                   </div>
                 </CardContent>
               </Card>
@@ -752,14 +753,15 @@ function EventPlannerApp() {
 
         {/* Actions */}
         <div className="mt-12 flex flex-wrap gap-3">
-          <Button onClick={downloadICS} className="h-10 px-4 gap-2 bg-fuchsia-600 hover:bg-fuchsia-500 text-white border-0"><CalendarIcon className="w-4 h-4"/>Download ICS</Button>
-          <Button variant="outline" onClick={downloadCSV} className="h-10 px-4 gap-2 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800"><FileDown className="w-4 h-4"/>Export CSV</Button>
-          <Button variant="outline" onClick={()=>exportStaticSite(events)} className="h-10 px-4 gap-2 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800">Download Site (HTML)</Button>
+          <Button onClick={downloadICS} className="h-10 px-4 gap-2 bg-fuchsia-600 hover:bg-fuchsia-500 active:scale-[0.98] transition text-white border-0"><CalendarIcon className="w-4 h-4"/>Download ICS</Button>
+          <Button variant="outline" onClick={downloadCSV} className="h-10 px-4 gap-2 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800 active:scale-[0.98] transition"><FileDown className="w-4 h-4"/>Export CSV</Button>
+          <Button variant="outline" onClick={()=>exportStaticSite(events)} className="h-10 px-4 gap-2 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800 active:scale-[0.98] transition">Download Site (HTML)</Button>
         </div>
 
         <p className="mt-6 text-xs text-slate-500">Dark-mode only. Travel days auto-added around international events. Designed for public viewing.</p>
       </main>
     </div>
+    </motion.div>
   );
 }
 
