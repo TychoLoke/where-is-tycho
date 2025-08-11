@@ -623,21 +623,39 @@ function EventPlannerApp() {
     <motion.div initial={{opacity:0, y:6}} animate={{opacity:1, y:0}} transition={{duration:0.25}}>
     <div className="min-h-screen bg-[radial-gradient(1100px_600px_at_15%_-10%,rgba(168,85,247,.12),transparent),radial-gradient(1100px_600px_at_115%_-10%,rgba(99,102,241,.10),transparent)] bg-slate-950 text-slate-100">
       {/* Header */}
-      <header className="sticky top-0 z-20 backdrop-blur bg-slate-950/70 border-b border-slate-900">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center gap-4">
-          <div className="p-2 rounded-xl bg-gradient-to-tr from-fuchsia-600 to-purple-600 text-white">
-            <Globe2 className="w-6 h-6" />
-          </div>
-          <div className="flex-1">
-            <h1 className="text-2xl font-semibold tracking-tight">Where is Tycho — Q3–Q4 2025</h1>
-            <p className="text-sm text-slate-400">Public itinerary · Europe/Amsterdam</p>
-          </div>
-          <div className="hidden md:flex gap-2">
-            <Button variant="outline" onClick={downloadCSV} className="gap-2 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800"><FileDown className="w-4 h-4"/>CSV</Button>
-            <Button onClick={downloadICS} className="gap-2 bg-fuchsia-600 hover:bg-fuchsia-500 text-white border-0"><CalendarIcon className="w-4 h-4"/>ICS</Button>
-          </div>
-        </div>
-      </header>
+<header className="sticky top-0 z-20 backdrop-blur bg-slate-950/70 border-b border-slate-900">
+  <div className="max-w-6xl mx-auto px-6 py-4 flex items-center gap-4">
+    <div className="p-2 rounded-xl bg-gradient-to-tr from-fuchsia-600 to-purple-600 text-white">
+      <Globe2 className="w-6 h-6" />
+    </div>
+    <div className="flex-1">
+      <h1 className="text-2xl font-semibold tracking-tight">Where is Tycho — Q3–Q4 2025</h1>
+      <p className="text-sm text-slate-400">Public itinerary · Europe/Amsterdam</p>
+    </div>
+    <div className="hidden md:flex items-center gap-2">
+      <Link href="/" className="px-4 py-2 rounded-lg border border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800 transition">
+        Home
+      </Link>
+      <Link href="/about" className="px-4 py-2 rounded-lg border border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800 transition">
+        About
+      </Link>
+      <Button
+        variant="outline"
+        onClick={downloadCSV}
+        className="gap-2 border-slate-800 bg-slate-900 text-slate-200 hover:bg-slate-800"
+      >
+        <FileDown className="w-4 h-4" /> CSV
+      </Button>
+      <Button
+        onClick={downloadICS}
+        className="gap-2 bg-fuchsia-600 hover:bg-fuchsia-500 text-white border-0"
+      >
+        <CalendarIcon className="w-4 h-4" /> ICS
+      </Button>
+    </div>
+  </div>
+</header>
+
 
       {/* Next Up strip */}
       <section className="max-w-6xl mx-auto px-6 pt-6">
